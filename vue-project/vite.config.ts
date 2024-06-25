@@ -8,6 +8,15 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  build: {
+    outDir: "./backend/dist"
+  },
+  server: {
+    proxy: {
+      "/api": "http://localhost:3000",
+      "/notes/assets": "http://localhost:3000",
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

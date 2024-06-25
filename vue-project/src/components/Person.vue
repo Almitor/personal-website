@@ -1,17 +1,78 @@
-<script lang="ts">
-import img from '@/assets/favicon.ico'
-  export default {
-    name: 'Person',
-    data(vm) {
-      return {
-        imageSrc:'http://111.230.44.48:3000/images/favicon-BU8zOGwP.ico'
-        // imageSrc:img
-      };
-    },
-  }
+<script lang="ts" setup>
+import {useRouter} from 'vue-router';
+import img from '@/assets/favicon.webp';
+import {computed, defineComponent, onMounted} from "vue";
+import {VApp, VContainer, VMain} from "vuetify/components";
+
+import { ref } from 'vue';
+
+const imageSrc = ref(img);
+const router = useRouter();
+const website = "www.almytor.cn";
+const mailAddress = "2862710232@qq.com";
+
+const backgrounds = ref([
+  new URL('@/assets/1.webp', import.meta.url).href,
+  new URL('@/assets/2.webp', import.meta.url).href,
+  new URL('@/assets/3.webp', import.meta.url).href,
+  new URL('@/assets/4.webp', import.meta.url).href,
+  new URL('@/assets/5.webp', import.meta.url).href,
+  new URL('@/assets/6.webp', import.meta.url).href,
+  new URL('@/assets/7.webp', import.meta.url).href,
+  new URL('@/assets/8.webp', import.meta.url).href,
+]);
+
+const currentBacImgIndex = ref(0);
+
+// 生成随机索引数
+function changeBacImgIndex() {
+  const randomIndex = Math.floor(Math.random() * backgrounds.value.length);
+  currentBacImgIndex.value = randomIndex;
+}
+
+// 点击后改变背景图片
+function changeBacImg(){
+  changeBacImgIndex();
+  updateBackgroundImage();
+}
+
+// 修改背景图片
+const currentBacImg = ref('');
+function preloadImage(src: string) {
+  return new Promise<void>((resolve) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => resolve();
+  });
+}
+
+async function updateBackgroundImage() {
+  const newSrc = backgrounds.value[currentBacImgIndex.value];
+  await preloadImage(newSrc);
+  currentBacImg.value = newSrc;
+}
+// const currentBacImg = computed(() => {
+//   return {
+//     backgroundImage: `url(${backgrounds.value[currentBacImgIndex.value]})`,
+//   };
+// });
+
+// 跳转到子页面
+function navigateTo(routeName: string) {
+  router.push({ path: `/Layout/${routeName}` });
+}
+
+// 网页加载调用一次修改背景图片
+onMounted(async () => {
+  changeBacImgIndex();
+  updateBackgroundImage();
+})
+
+imageSrc.value = img;
 </script>
 
 <template>
+  <div class="bg-container d-flex flex-column" :style="{ backgroundImage: `url(${currentBacImg})` }" @click="changeBacImg">
   <v-container>
     <v-row justify="center" align="center">
       <v-col cols="12" xs="12" sm="10" md="8"  @click.stop>
@@ -31,12 +92,12 @@ import img from '@/assets/favicon.ico'
                     class="roundedImg"
                 ></v-img>
               </v-list-item>
-              <v-card-subtitle >www.almytor.cn</v-card-subtitle>
+              <v-card-subtitle >{{ website }}</v-card-subtitle>
               <v-list-item>
                 <a href="https://github.com/Almitor" class="mr-5">
                   <v-icon>mdi-github</v-icon>
                 </a>
-                <a href="#" >
+                <a >
                   <v-overlay
                       activator="parent"
                       location-strategy="connected"
@@ -44,7 +105,7 @@ import img from '@/assets/favicon.ico'
                       scroll-strategy="close"
                   >
                     <v-card class="pa-2">
-                      2862710232@qq.com
+                      {{mailAddress}}
                     </v-card>
                   </v-overlay>
                   <v-icon>mdi-email</v-icon>
@@ -55,13 +116,13 @@ import img from '@/assets/favicon.ico'
             <v-col cols="12" xs="12" sm="12" md="6" >
               <v-row>
                 <v-col cols="6" class="pa-1">
-                  <v-card class="col-card" hover>
+                  <v-card class="col-card" hover @click="navigateTo('Blog')">
                     <v-card-item><v-icon>mdi-note</v-icon></v-card-item>
                     <v-card-title>博客</v-card-title>
                   </v-card>
                 </v-col>
                 <v-col cols="6" class="pa-1">
-                    <v-card class="col-card" hover>
+                    <v-card class="col-card" hover @click="navigateTo('Note')">
                       <v-card-item><v-icon>mdi-book-open-variant-outline</v-icon></v-card-item>
                       <v-card-title>笔记</v-card-title>
                     </v-card>
@@ -70,13 +131,13 @@ import img from '@/assets/favicon.ico'
 
               <v-row>
                 <v-col cols="6" class="pa-1">
-                    <v-card class="col-card" hover>
+                    <v-card class="col-card" hover @click="navigateTo('Work')">
                       <v-card-item><v-icon>mdi-web</v-icon></v-card-item>
                       <v-card-title>作品</v-card-title>
                     </v-card>
                 </v-col>
                 <v-col cols="6" class="pa-1">
-                    <v-card class="col-card" hover>
+                    <v-card class="col-card" hover @click="navigateTo('Other')">
                       <v-card-item><v-icon>mdi-view-grid-plus-outline</v-icon></v-card-item>
                       <v-card-title>其他</v-card-title>
                     </v-card>
@@ -88,9 +149,20 @@ import img from '@/assets/favicon.ico'
       </v-col>
     </v-row>
   </v-container>
+  </div>
 </template>
 
 <style scoped>
+.bg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .home-card {
   text-align: center;
   color: white;
