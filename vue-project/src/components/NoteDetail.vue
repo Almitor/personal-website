@@ -3,10 +3,6 @@ import { marked, Renderer} from "marked";
 import axios from "axios";
 import {onMounted, ref} from "vue";
 import { useRoute } from "vue-router";
-// import hljs from "highlight.js";
-
-// 导入 highlight.js 的样式文件
-// import "highlight.js/styles/github.css";
 
 const markdownText = ref("");
 const route = useRoute();
@@ -23,7 +19,9 @@ renderer.image = ({ href, title, text }) => {
 };
 
 // 配置 marked 使用自定义 Renderer
-marked.setOptions({ renderer });
+marked.setOptions({
+  renderer
+});
 
 
 async function fetchMarkdown() {
@@ -31,11 +29,6 @@ async function fetchMarkdown() {
     const filename = route.params.filename as string;
     const url = `/api/notes/${filename}`;
     const response = await axios.get(url);
-    //
-    // const customHighlight = (code: string, lang: string): string => {
-    //   const language = hljs.getLanguage(lang) ? lang : "plaintext";
-    //   return hljs.highlight(code, { language }).value;
-    // };
 
     console.log(response.data); // 打印返回数据进行检查
 
@@ -60,7 +53,7 @@ onMounted(() => {
     <v-row justify="center">
       <v-col cols="12" xs="12" md="8" >
         <v-container>
-          <p v-html="markdownText" class="markdown-body"></p>
+          <div v-html="markdownText" class="markdown-body"></div>
         </v-container>
       </v-col>
     </v-row>
@@ -69,11 +62,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@import "github-markdown-css/github-markdown.css";
+@import url('https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css');
+
 .markdown-body {
   padding: 20px;
   border-radius: 8px;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 </style>

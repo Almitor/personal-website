@@ -1,11 +1,12 @@
 <script setup lang="ts" name="Layout">
 import img from '@/assets/favicon.webp';
-import {useRouter} from 'vue-router';
-import {ref} from "vue";
-
+import {useRoute, useRouter} from 'vue-router';
+import {computed, reactive, ref, watch} from "vue";
 
 const image = img;
 const router = useRouter();
+const route = useRoute();
+
 const items = [
   {name:'博客', value:'Blog'},
   {name:'笔记', value:'Note'},
@@ -28,6 +29,48 @@ function indexTo(){
 }
 
 const drawer = ref(false);
+
+
+// const breadcrumbs = computed(() => {
+//   const matchedRoutes = route.matched;
+//   const crumbs = [
+//     {
+//       title: '主页',
+//       disabled: false,
+//       href: router.resolve({ name: 'Person' }).href
+//     }
+//   ];
+//
+//   matchedRoutes.forEach((r) => {
+//     const routeName = r.name;
+//     const itemName = items.find(item => item.value === routeName)?.name || routeName?.toString() || '';
+//
+//     if (itemName !== '') {
+//       crumbs.push({
+//         title: itemName,
+//         disabled: false,
+//         href: router.resolve({ name: routeName || '' }).href
+//       });
+//     }
+//   });
+//
+//   if (route.params.filename) {
+//     const filename = route.params.filename as string;
+//     const noteDetailIndex = crumbs.findIndex(item => item.title === 'NoteDetail');
+//
+//     if (noteDetailIndex !== -1) {
+//       // 替换'NoteDetail'为'笔记'
+//       crumbs.splice(noteDetailIndex, 1, { title: '笔记', disabled: false, href: '/note' });
+//     }
+//
+//     crumbs.push({
+//       title: filename,
+//       disabled: true,
+//       href: ''
+//     });
+//   }
+//   return crumbs;
+// });
 
 </script>
 
@@ -79,7 +122,25 @@ const drawer = ref(false);
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
+
+
   <v-main class="bg-blue-grey-lighten-3">
+<!--    <v-container>-->
+<!--      <v-row justify="center" >-->
+<!--        <v-col cols="12" xs="12" sm="10" md="8">-->
+<!--          <v-breadcrumbs :items="breadcrumbs">-->
+<!--            <template v-slot:item="{ item }" class="font-weight-bold text-white">-->
+<!--              <v-breadcrumbs-item :href="item.href" :disabled="item.disabled" >-->
+<!--                {{ item.title }}-->
+<!--              </v-breadcrumbs-item>-->
+<!--            </template>-->
+<!--            <template v-slot:divider>-->
+<!--              <v-icon>mdi-chevron-right</v-icon>-->
+<!--            </template>-->
+<!--          </v-breadcrumbs>-->
+<!--        </v-col>-->
+<!--      </v-row>-->
+<!--    </v-container>-->
       <router-view/>
   </v-main>
 </v-layout>

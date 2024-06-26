@@ -21,6 +21,7 @@
     "markdown-it": "^14.1.0",
     "marked": "^13.0.0",
     "vue": "^3.4.21",
+    "vue-lazyload": "^3.0.0",
     "vue-markdown": "^2.2.4",
     "vue-router": "^4.3.3",
     "vuetify": "^3.6.8"

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import {useRouter} from 'vue-router';
-import img from '@/assets/favicon.webp';
+import img from '/favicon.webp';
 import {computed, defineComponent, onMounted} from "vue";
 import {VApp, VContainer, VMain} from "vuetify/components";
 
 import { ref } from 'vue';
 
-const imageSrc = ref(img);
+const imageSrc = ref('');
 const router = useRouter();
 const website = "www.almytor.cn";
 const mailAddress = "2862710232@qq.com";
@@ -22,7 +22,7 @@ const backgrounds = ref([
   new URL('@/assets/8.webp', import.meta.url).href,
 ]);
 
-const currentBacImgIndex = ref(0);
+const currentBacImgIndex = ref(1);
 
 // 生成随机索引数
 function changeBacImgIndex() {
@@ -38,6 +38,8 @@ function changeBacImg(){
 
 // 修改背景图片
 const currentBacImg = ref('');
+
+// 预加载图片
 function preloadImage(src: string) {
   return new Promise<void>((resolve) => {
     const img = new Image();
@@ -46,16 +48,12 @@ function preloadImage(src: string) {
   });
 }
 
+// 更新图片
 async function updateBackgroundImage() {
   const newSrc = backgrounds.value[currentBacImgIndex.value];
   await preloadImage(newSrc);
   currentBacImg.value = newSrc;
 }
-// const currentBacImg = computed(() => {
-//   return {
-//     backgroundImage: `url(${backgrounds.value[currentBacImgIndex.value]})`,
-//   };
-// });
 
 // 跳转到子页面
 function navigateTo(routeName: string) {
@@ -64,11 +62,12 @@ function navigateTo(routeName: string) {
 
 // 网页加载调用一次修改背景图片
 onMounted(async () => {
+  await preloadImage(img);
+  imageSrc.value = img;
   changeBacImgIndex();
   updateBackgroundImage();
 })
 
-imageSrc.value = img;
 </script>
 
 <template>
@@ -88,8 +87,8 @@ imageSrc.value = img;
             <v-col cols="12" xs="12" sm="12" md="6">
               <v-list-item class="justify-center w-100">
                 <v-img
-                    :src="imageSrc"
                     class="roundedImg"
+                    :src="imageSrc"
                 ></v-img>
               </v-list-item>
               <v-card-subtitle >{{ website }}</v-card-subtitle>

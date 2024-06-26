@@ -53,7 +53,7 @@ function removeExtension(filename:string){
         <v-card v-for="note in notes" :key="note.filename" hover class="mb-2 bg-shades-white"  @click="showNote(note.filename)">
           <v-card-title>{{ removeExtension(note.filename) }}</v-card-title>
           <v-card-actions>
-            <v-card-subtitle>{{ new Date(note.createdTime).toLocaleDateString() }}</v-card-subtitle>
+            <v-card-subtitle>{{ new Date(note.modifiedTime).toLocaleDateString() }}</v-card-subtitle>
             <v-spacer/>
             <v-btn
                 color="medium-emphasis"
