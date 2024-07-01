@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+import Show from "@/components/Show.vue";
 </script>
 
 <template>
-作品
+<Show url="/api/notes"/>
 </template>
 
 <style scoped>

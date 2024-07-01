@@ -16,8 +16,9 @@ const routes = [
         component: Layout,
         children: [
             { path: 'Note', name: 'Note', component: Note },
-            { path: 'Note/:filename', name: 'NoteDetail', component: NoteDetail },
+            { path: '/Note/:filename', name: 'NoteDetail', component: NoteDetail },
             { path: 'Blog', name: 'Blog', component: Blog },
+            { path: '/Blog/:filename', name: 'NoteDetail', component: NoteDetail },
             { path: 'Work', name: 'Work', component: Work },
             { path: 'Other', name: 'Other', component: Other },
         ],

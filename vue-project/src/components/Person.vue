@@ -73,7 +73,7 @@ onMounted(async () => {
 <template>
   <div class="bg-container d-flex flex-column" :style="{ backgroundImage: `url(${currentBacImg})` }" @click="changeBacImg">
   <v-container>
-    <v-row justify="center" align="center">
+    <v-row justify="center" align="center" >
       <v-col cols="12" xs="12" sm="10" md="8"  @click.stop>
         <v-card class="home-card pa-5"  elevation="24" >
           <v-card-item>
@@ -85,7 +85,7 @@ onMounted(async () => {
 
           <v-row align="center" class="mt-2">
             <v-col cols="12" xs="12" sm="12" md="6">
-              <v-list-item class="justify-center w-100">
+              <v-list-item class="justify-center w-100 imgContainer">
                 <v-img
                     class="roundedImg"
                     :src="imageSrc"
@@ -162,6 +162,10 @@ onMounted(async () => {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.imgContainer{
+  height: 13rem;
+}
 .home-card {
   text-align: center;
   color: white;
@@ -171,7 +175,7 @@ onMounted(async () => {
 .roundedImg {
   display: inline-block;
   border-radius: 50%;
-  width: 60%;
+  width: 13rem;
 }
 a {
   color: inherit;

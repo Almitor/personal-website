@@ -14,7 +14,7 @@ const renderer = new Renderer();
 renderer.image = ({ href, title, text }) => {
   // 如果 href 是以 http(s) 开头的网络地址或以 / 开头的绝对路径，则直接使用
   // 否则加上相对路径前缀
-  const newHref = href.startsWith('http') || href.startsWith('/') ? href : `/notes/assets/${href.split('/').pop()}`;
+  const newHref = href.startsWith('http') || href.startsWith('/') ? href : `/assets/${href.split('/').pop()}`;
   return `<img src="${newHref}" alt="${text}" title="${title || ''}" style="width: 100%">`;
 };
 
@@ -26,8 +26,10 @@ marked.setOptions({
 
 async function fetchMarkdown() {
   try {
+    // 获取参数
     const filename = route.params.filename as string;
-    const url = `/api/notes/${filename}`;
+    const fileurl = route.query.url as string;
+    const url = `${fileurl}/${filename}`;
     const response = await axios.get(url);
 
     console.log(response.data); // 打印返回数据进行检查

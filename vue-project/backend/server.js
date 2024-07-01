@@ -8,11 +8,11 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // 提供静态文件服务
-app.use('/notes/assets', express.static(path.join(__dirname, 'notes/assets')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-// API 路由
-app.get('/api/notes', (req, res) => {
-    const notesDirectory = path.resolve(__dirname, 'notes');
+// 获取目录下所有文件
+function getFiles(directory){
+    const notesDirectory = path.resolve(__dirname, directory);
     const files = fs.readdirSync(notesDirectory);
 
     const notes = files
@@ -28,8 +28,18 @@ app.get('/api/notes', (req, res) => {
                 modifiedTime: stats.mtime
             };
         });
+    return notes;
+}
 
+// API 路由
+app.get('/api/notes', (req, res) => {
+    const notes = getFiles('notes');
     res.json(notes);
+});
+
+app.get('/api/blogs', (req, res) => {
+    const blogs = getFiles('blogs');
+    res.json(blogs);
 });
 
 app.get('/api/notes/:filename', (req, res) => {
@@ -43,6 +53,20 @@ app.get('/api/notes/:filename', (req, res) => {
         res.status(404).json({ error: '文件未找到' });
     }
 });
+
+app.get('/api/blogs/:filename', (req, res) => {
+    const notesDirectory = path.resolve(__dirname, 'blogs');
+    const filePath = path.join(notesDirectory, req.params.filename);
+
+    if (fs.existsSync(filePath) && filePath.endsWith('.md')) {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        res.json({ content });
+    } else {
+        res.status(404).json({ error: '文件未找到' });
+    }
+});
+
+
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
