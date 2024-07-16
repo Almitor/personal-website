@@ -12,15 +12,17 @@ import NoteDetail from "@/components/NoteDetail.vue";
 const routes = [
     { path: '/', name: 'Person', component: Person },
     {
-        path: '/Layout',
+        path: '/',
         component: Layout,
         children: [
             { path: 'Note', name: 'Note', component: Note },
-            { path: '/Note/:filename', name: 'NoteDetail', component: NoteDetail },
+            { path: 'Note/:filename', name: 'NoteDetail', component: NoteDetail },
             { path: 'Blog', name: 'Blog', component: Blog },
-            { path: '/Blog/:filename', name: 'NoteDetail', component: NoteDetail },
+            { path: 'Blog/:filename', name: 'BlogDetail', component: NoteDetail },
             { path: 'Work', name: 'Work', component: Work },
             { path: 'Other', name: 'Other', component: Other },
+            { path: 'Other/:filename', name: 'OtherDetail', component: NoteDetail },
+
         ],
     },
 ];

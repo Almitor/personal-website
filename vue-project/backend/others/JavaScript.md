@@ -82,7 +82,7 @@ window.onerror = function (err,) {
 
 6. 为什么try...catch..代码块没有执行（没有捕获到错误）？
 
-<img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240525175407715.png" alt="image-20240525175407715" style="zoom: 50%;" />
+![image-20240702165415850](./assets/image-20240702165415850.png)
 
 JS是单线程操作，为了防止代码阻塞，需要引入同步任务和异步任务，同步任务即程序主线程，直接放入执行栈中由JS引擎执行，异步任务由宿主环境（浏览器/node）执行。
 
@@ -92,7 +92,7 @@ setTimeout为异步任务，因此，尽管第二个参数为0，也会被放入
 
 ### 宏任务和微任务
 
-![image-20240525195559914](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240525195559914.png)
+![image-20240525195559914](./assets/image-20240525195559914.png)
 
 es5之后，JS引入Promise，JS引擎也可以生成异步任务
 
@@ -176,9 +176,9 @@ fun();
 
 ```
 
-<img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240603162342448.png" alt="image-20240603162342448" style="zoom:67%;" />
+![image-20240702165440427](./assets/image-20240702165440427.png)
 
-![image-20240603164704856](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240603164704856.png)
+![image-20240603164704856](./assets/image-20240603164704856.png)
 
 
 
@@ -202,7 +202,7 @@ JavaScript是有全局作用域，函数作用域和块作用域，简单来说�
 
    
 
-   <img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240603155629784.png" alt="image-20240603155629784" style="zoom: 67%;" />
+   ![image-20240702165454336](./assets/image-20240702165454336.png)
 
 2. 函数作用域：函数调用结束销毁，每调用一次产生一个新的作用域，相互独立
 
@@ -240,7 +240,7 @@ console.log(num); // 报错
 
 动态作用域在运行时划分，沿着**调用栈**外外延伸
 
-![image-20240603161332500](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240603161332500.png)
+![image-20240603161332500](./assets/image-20240603161332500.png)
 
 
 
@@ -272,5 +272,5 @@ btn.addEventListener("click", ()=>{
 
 
 
-![image-20240603183409714](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240603183409714.png)
+![image-20240603183409714](./assets/image-20240603183409714.png)
 

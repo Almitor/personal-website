@@ -32,7 +32,7 @@ async function fetchMarkdown() {
     const url = `${fileurl}/${filename}`;
     const response = await axios.get(url);
 
-    console.log(response.data); // 打印返回数据进行检查
+    // console.log(response.data); // 打印返回数据进行检查
 
     // 判断返回数据是否具有filename和content属性
     if (response.data && response.data.content) {
@@ -51,9 +51,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container >
+  <v-container class="pa-2">
     <v-row justify="center">
-      <v-col cols="12" xs="12" md="8" >
+      <v-col cols="12" xs="12" sm="10" md="8" class="pa-0">
         <v-container>
           <div v-html="markdownText" class="markdown-body"></div>
         </v-container>

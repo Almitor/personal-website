@@ -3,7 +3,7 @@ import Show from "@/components/Show.vue";
 </script>
 
 <template>
-<Show url="/api/notes"/>
+作品
 </template>
 
 <style scoped>

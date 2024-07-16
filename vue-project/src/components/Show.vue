@@ -8,10 +8,15 @@ const props = defineProps({
   url:{
     type:String,
     required:true
+  },
+  detail:{
+    type:String,
+    required:true
   }
 })
 
 const url = props.url as string;
+const detail = props.detail as string;
 
 interface Note {
   filename: string;
@@ -26,7 +31,7 @@ const router = useRouter();
 // 获取目录中文件，放入notes中
 async function fetchNotes() {
   try {
-    console.log(`url:${url}`)
+    // console.log(`url:${url}`)
     const response = await axios.get(url);
     notes.value = response.data;
   } catch (error) {
@@ -38,7 +43,7 @@ async function fetchNotes() {
 // 跳转文件详情页面
 function showNote(filename:string){
   router.push({
-    name:"NoteDetail",
+    name:detail,
     params:{
       filename
     },

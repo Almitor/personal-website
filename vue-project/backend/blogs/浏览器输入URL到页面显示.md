@@ -12,11 +12,17 @@
 
 5. **递归查询**：DNS服务器会进行递归查询，从根DNS服务器开始，到顶级域（TLD）DNS服务器，最后到权威DNS服务器，找到该域名对应的IP地址。
 
-   ![img](https://images2015.cnblogs.com/blog/464291/201707/464291-20170703113844956-354755333.jpg)
+   
+
+   ![img](./assets/464291-20170703113844956-354755333.jpg)
+
+   
 
 6. **返回IP地址**：找到IP地址后，DNS服务器返回给操作系统，再返回给浏览器。
 
-### 2. 建立连接
+
+
+### 2. 建立TCP连接
 
  	建立TCP连接（三次握手）
 
@@ -28,19 +34,19 @@
 
   
 
-  ![image-20240615161421466](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615161421466.png)
+  ![image-20240615161421466](./assets/image-20240615161421466.png)
 
   
 
-  ![image-20240615161229410](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615161229410.png)
+  ![image-20240615161229410](./assets/image-20240615161229410.png)
 
 ​	
 
 ​	若请求的网址采用HTTPS协议，则建立完TCP连接后需要建立SSL/TLS连接
 
-![image-20240615162440708](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615162440708.png)
+![image-20240615162440708](./assets/image-20240615162440708.png)
 
-![image-20240615162247550](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615162247550.png)
+![image-20240615162247550](./assets/image-20240615162247550.png)
 
 
 
@@ -50,7 +56,7 @@
 
 2. **发送请求**：浏览器将构建的HTTP请求通过已建立的TCP连接发送到服务器。
 
-   ![image-20240615161645480](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615161645480.png)
+   ![image-20240615161645480](./assets/image-20240615161645480.png)
 
 ### 4. 服务器处理请求
 
@@ -58,11 +64,11 @@
 
 2. **处理请求**：服务器根据请求路径和参数，调用相应的后端逻辑，处理业务逻辑，查询数据库等。
 
-3. **生成响应**：服务器生成HTTP响应，包括响应状态码、响应头、响应体（HTML/CSS/JavaScript等资源）。
+3. **生成响应**：服务器生成HTTP响应，包括响应行、响应头、响应体（HTML/CSS/JavaScript等资源）。
 
 4. **发送响应**：服务器通过TCP连接将HTTP响应发送回客户端。
 
-   ![image-20240615161719054](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615161719054.png)
+   ![image-20240615161719054](./assets/image-20240615161719054.png)
 
 ### 5. 浏览器接收响应
 
@@ -70,7 +76,7 @@
 
 2. **检查状态码**：浏览器检查响应状态码，决定如何处理响应（如200表示成功，404表示未找到，500表示服务器错误等）。
 
-   ![image-20240615161800919](C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20240615161800919.png)
+   ![image-20240615161800919](./assets/image-20240615161800919.png)
 
 ### 6. 渲染页面
 
@@ -99,3 +105,4 @@
 ### 10. 持续交互
 
 用户与页面交互时（如点击按钮、提交表单），浏览器会根据用户操作发送新的HTTP请求，重新执行上述步骤，动态更新页面内容。
+

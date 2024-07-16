@@ -10,7 +10,7 @@
 2. 父元素添加内边距
 3. 父元素添加overflow: hidden
 
-![image-20240527203241084](https://thumbnail1.baidupcs.com/thumbnail/b6134241bm079461ea0f5871e83db413?fid=2161520001-250528-619139961695817&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-zChEU93KSDX8uqulvwKnw7DC0Z4%3d&expires=8h&chkbd=0&chkv=0&dp-logid=64511898936990639&dp-callid=0&time=1717160400&size=c1280_u720&quality=90&vuk=2161520001&ft=image&autopolicy=1)
+![image-20240527203241084](./assets/image-20240527203241084.png)
 
 
 

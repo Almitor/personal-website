@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import Show from "@/components/Show.vue";
+import {onMounted} from "vue";
+const emit = defineEmits(['send-url']);
+onMounted(()=>{
+  setTimeout(()=>{
+    emit('send-url',"/api/notes")
+  },0)
+})
 </script>
 
 <template>
-  <Show url="/api/notes"/>
+  <Show url="/api/notes" detail="NoteDetail"/>
 </template>
 
 <style scoped>

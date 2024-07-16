@@ -57,7 +57,7 @@ async function updateBackgroundImage() {
 
 // 跳转到子页面
 function navigateTo(routeName: string) {
-  router.push({ path: `/Layout/${routeName}` });
+  router.push({ path: `/${routeName}` });
 }
 
 // 网页加载调用一次修改背景图片

@@ -22,4 +22,4 @@ Linux系统有7个运行级别(runlevel)：
 - 若是 **b** 则表示为装置文件里面的可供储存的接口设备(可随机存取装置)；
 - 若是 **c** 则表示为装置文件里面的串行端口设备，例如键盘、鼠标(一次性读取装置)。
 
-<img src="C:\Users\Lenovo\AppData\Roaming\Typora\typora-user-images\image-20230411153420069.png" alt="image-20230411153420069" style="zoom: 67%;" />
+![image-20240702165819117](./assets/image-20240702165819117.png)
